@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -27,6 +29,18 @@ public class Car {
     @Min(value = 2)
     @Max(value = 10)
     private int numberOfSeats;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
 
     public long getId() {
         return id;
